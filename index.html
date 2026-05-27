@@ -18,8 +18,17 @@ body{
   margin:0; min-height:100vh; display:flex; justify-content:center; align-items:center;
   background: radial-gradient(circle at 25% 10%, #e2c988 0, #c9b37e 34%, #9e9a76 100%);
   color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  padding:24px 12px;
 }
-.wrap{width:min(92vw,540px); padding:24px 0 34px; text-align:center}
+.wrap{
+  width:min(94vw,440px);
+  padding:30px 24px 34px;
+  text-align:center;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%);
+  border:1.5px solid rgba(24,36,39,.18);
+  border-radius:36px;
+  box-shadow:0 26px 55px rgba(24,36,39,.22), 0 4px 12px rgba(24,36,39,.10), inset 0 1px 0 rgba(255,255,255,.55);
+}
 h1{font-size:clamp(2.7rem,10vw,4.8rem); line-height:.83; letter-spacing:-.075em; margin:0 0 28px; font-weight:950;}
 .controls{display:grid; gap:12px; margin:0 0 18px}
 .selectbox{position:relative}
@@ -106,6 +115,11 @@ function minutesToText(total){
   if(h<=0) return `${m} min`;
   return `${h}h ${String(m).padStart(2,'0')}`;
 }
+function flowTempo(flow){
+  if(flow < 130) return 'langsam';
+  if(flow > 250) return 'schnell';
+  return 'mittel';
+}
 function update(){
   const r=selectedRoute();
   const mode=parseFloat(modeEl.value);
@@ -120,13 +134,14 @@ function update(){
   speedPill.textContent = `${speed.toFixed(1)} km/h`;
   path.setAttribute('d', r.path);
   shadow.setAttribute('d', r.path);
-  flowPill.textContent = hasLiveFlow ? `Aare: ${Math.round(currentFlow)} m³/s` : `Aare: ${Math.round(currentFlow)} m³/s Referenz`;
+  const tempo = flowTempo(currentFlow);
+  flowPill.textContent = hasLiveFlow ? `Aare: ${Math.round(currentFlow)} m³/s · ${tempo}` : `Aare: ${Math.round(currentFlow)} m³/s Referenz · ${tempo}`;
   if(currentFlow >= 300) dataNote.innerHTML = '<span class="warn">Viel Wasser.</span> Das hier ist keine Sicherheitsempfehlung, nur ein Zeitgefühl.';
   else dataNote.textContent = 'Grobe Erfahrungsrechnung. Keine Hydrologie. Nur ein Zeitgefühl fürs Treibenlassen.';
 }
 async function loadFlow(){
   try{
-    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.michaelzwahlen.aare-boeoetle&version=0.12';
+    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.michaelzwahlen.aare-boeoetle&version=0.13';
     const res=await fetch(url, {cache:'no-store'});
     if(!res.ok) throw new Error('API');
     const data=await res.json();
