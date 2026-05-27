@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aare Böötle</title>
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
+<link rel="alternate icon" type="image/png" href="apple-touch-icon.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Aare Böötle" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="theme-color" content="#c9b37e" />
+<meta name="description" content="Wie lange dauert das Böötle heute? Ein ruhiges Zeitgefühl für die Aare zwischen Thun und Bern." />
 <style>
 :root {
   --bg:#c9b37e;
@@ -18,16 +26,16 @@ body{
   margin:0; min-height:100vh; display:flex; justify-content:center; align-items:center;
   background: radial-gradient(circle at 25% 10%, #e2c988 0, #c9b37e 34%, #9e9a76 100%);
   color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  padding:24px 12px;
+  padding:32px 18px;
 }
 .wrap{
-  width:min(94vw,440px);
-  padding:30px 24px 34px;
+  width:min(94vw,520px);
+  padding:38px 32px 42px;
   text-align:center;
   background:linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%);
-  border:1.5px solid rgba(24,36,39,.18);
-  border-radius:36px;
-  box-shadow:0 26px 55px rgba(24,36,39,.22), 0 4px 12px rgba(24,36,39,.10), inset 0 1px 0 rgba(255,255,255,.55);
+  border:1.5px solid rgba(24,36,39,.16);
+  border-radius:40px;
+  box-shadow:0 28px 60px rgba(24,36,39,.22), 0 6px 14px rgba(24,36,39,.10), inset 0 1px 0 rgba(255,255,255,.55);
 }
 h1{font-size:clamp(2.7rem,10vw,4.8rem); line-height:.83; letter-spacing:-.075em; margin:0 0 28px; font-weight:950;}
 .controls{display:grid; gap:12px; margin:0 0 18px}
@@ -141,7 +149,7 @@ function update(){
 }
 async function loadFlow(){
   try{
-    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.michaelzwahlen.aare-boeoetle&version=0.13';
+    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.michaelzwahlen.aare-boeoetle&version=0.14';
     const res=await fetch(url, {cache:'no-store'});
     if(!res.ok) throw new Error('API');
     const data=await res.json();
