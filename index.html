@@ -1,160 +1,144 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aare Böötle</title>
-
 <style>
+:root {
+  --bg:#c9b37e;
+  --ink:#182427;
+  --paper:#efe6d1;
+  --paper2:#e3d2a8;
+  --accent:#0f5f57;
+  --orange:#d47932;
+}
+*{box-sizing:border-box}
 body{
-    margin:0;
-    padding:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    background:#d8d0c4;
-    color:#1d2a2f;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
+  margin:0; min-height:100vh; display:flex; justify-content:center; align-items:center;
+  background: radial-gradient(circle at 25% 10%, #e2c988 0, #c9b37e 34%, #9e9a76 100%);
+  color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
-
-.container{
-    width:90%;
-    max-width:520px;
-    text-align:center;
-}
-
-h1{
-    font-size:2.2rem;
-    line-height:1.05;
-    margin-bottom:2.5rem;
-    font-weight:800;
-    letter-spacing:-0.03em;
-}
-
-select{
-    width:100%;
-    padding:18px;
-    margin-bottom:16px;
-    border:none;
-    border-radius:20px;
-    font-size:1rem;
-    background:#f5f1eb;
-    color:#1d2a2f;
-    appearance:none;
-}
-
-.icon{
-    width:100%;
-    height:90px;
-    margin:2rem 0;
-}
-
-.duration{
-    font-size:5rem;
-    font-weight:900;
-    line-height:0.9;
-    color:transparent;
-    -webkit-text-stroke:2px #1d2a2f;
-    margin:0;
-}
-
-.subtitle{
-    margin-top:0.8rem;
-    font-size:1rem;
-    opacity:0.8;
-}
-
-.footer{
-    margin-top:2rem;
-    font-size:0.95rem;
-    opacity:0.6;
-}
+.wrap{width:min(92vw,540px); padding:24px 0 34px; text-align:center}
+h1{font-size:clamp(2.7rem,10vw,4.8rem); line-height:.83; letter-spacing:-.075em; margin:0 0 28px; font-weight:950;}
+.controls{display:grid; gap:12px; margin:0 0 18px}
+.selectbox{position:relative}
+select{width:100%; border:2px solid rgba(24,36,39,.12); border-radius:24px; background:rgba(239,230,209,.82); color:var(--ink); padding:18px 50px 18px 18px; font-size:1.08rem; font-weight:720; appearance:none; box-shadow:0 10px 22px rgba(24,36,39,.09);}
+.selectbox:after{content:"↓"; position:absolute; right:20px; top:50%; transform:translateY(-52%); font-size:1.15rem; opacity:.65; pointer-events:none}
+.rivercard{background:rgba(239,230,209,.42); border:1px solid rgba(24,36,39,.13); border-radius:28px; padding:10px 12px 8px; margin:20px 0 18px; box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+svg{width:100%; height:120px; overflow:visible}
+#riverPath{fill:none; stroke:var(--ink); stroke-width:6.5; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke}
+#riverShadow{fill:none; stroke:rgba(15,95,87,.28); stroke-width:12; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke}
+.duration{font-size:clamp(5.3rem,22vw,8rem); font-weight:1000; line-height:.82; letter-spacing:-.085em; margin:12px 0 0; color:transparent; -webkit-text-stroke:2.3px var(--ink); text-shadow:0 2px 0 rgba(24,36,39,.08)}
+.unit{font-size:1rem; font-weight:800; letter-spacing:.02em; opacity:.72; margin-top:7px}
+.meta{display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin:16px 0 0}
+.pill{background:rgba(239,230,209,.65); border:1px solid rgba(24,36,39,.13); border-radius:999px; padding:8px 12px; font-size:.92rem; font-weight:750}
+.note{margin-top:23px; font-size:1.06rem; font-weight:780}
+.footer{margin-top:9px; opacity:.62; font-size:.93rem; font-weight:690}
+.small{font-size:.78rem; opacity:.6; margin-top:12px; line-height:1.35}
+.warn{color:#4e2418; font-weight:850}
 </style>
 </head>
-
 <body>
-
-<div class="container">
-
-<h1>Loslassen.<br>Langsam.<br>Langsam.</h1>
-
-<select id="route">
-<option value="17184">Uttigen → Marzili</option>
-<option value="6000">Untertor → Worblaufen</option>
-<option value="5210">Worblaufen → Felsenaubrücke</option>
-<option value="5429">Felsenaubrücke → (H)Eymatt</option>
-</select>
-
-<select id="mode">
-<option value="1">Böötle</option>
-<option value="0.82">SUP</option>
-</select>
-
-<svg class="icon" viewBox="0 0 300 100">
-<path id="river"
-d="M10,60 C60,20 90,90 140,50 C180,20 210,80 290,40"
-fill="none"
-stroke="#1d2a2f"
-stroke-width="6"
-stroke-linecap="round"/>
-</svg>
-
-<div class="duration" id="duration">2h 05</div>
-
-<div class="subtitle">
-Zyt zum los la.
-</div>
-
-<div class="footer">
-Berner Langsamkeit
-</div>
-
-</div>
-
+<main class="wrap">
+  <h1>Loslassen.<br>Langsam.<br>Langsam.</h1>
+  <section class="controls">
+    <div class="selectbox"><select id="route"></select></div>
+    <div class="selectbox">
+      <select id="mode">
+        <option value="0.88">Böötle</option>
+        <option value="1.00" selected>Packraft</option>
+        <option value="1.12">SUP ruhig</option>
+      </select>
+    </div>
+  </section>
+  <section class="rivercard">
+    <svg id="routeSvg" viewBox="0 0 320 115" preserveAspectRatio="xMidYMid meet" aria-label="Streckenverlauf">
+      <path id="riverShadow" d=""></path>
+      <path id="riverPath" d=""></path>
+    </svg>
+  </section>
+  <div class="duration" id="duration">–</div>
+  <div class="unit">treiben lassen</div>
+  <div class="meta">
+    <span class="pill" id="flowPill">Aare: Referenzwert</span>
+    <span class="pill" id="speedPill">– km/h</span>
+  </div>
+  <div class="note">Zyt zum los la.</div>
+  <div class="footer">Berner Langsamkeit</div>
+  <div class="small" id="dataNote">Modell grob kalibriert mit Felsenaubrücke → (H)Eymatt: 5.43 km in 1:25:39 bei ca. 197 m³/s.</div>
+</main>
 <script>
+const ROUTES = [{"id": "uttigen_marzili", "label": "Uttigen → Marzili", "meters": 22113, "path": "M 205.3,106.0 L 204.8,105.9 L 202.2,105.4 L 200.8,105.2 L 199.5,104.9 L 198.9,104.7 L 198.4,104.4 L 198.3,104.3 L 198.1,104.2 L 197.6,103.7 L 197.4,103.4 L 197.3,103.2 L 197.2,103.0 L 197.1,102.1 L 197.0,101.2 L 197.0,100.3 L 197.0,99.8 L 196.8,99.3 L 196.6,98.7 L 196.7,98.3 L 197.0,97.7 L 197.4,96.7 L 197.8,95.6 L 197.9,94.8 L 198.2,94.1 L 198.9,92.5 L 199.0,92.0 L 198.9,91.6 L 198.9,91.1 L 198.8,90.6 L 198.5,90.1 L 198.1,89.6 L 195.9,87.4 L 195.2,86.6 L 193.9,84.8 L 192.9,83.6 L 192.3,82.4 L 191.4,80.9 L 191.1,80.4 L 190.0,78.1 L 189.6,77.1 L 189.5,76.4 L 189.3,75.8 L 189.1,75.1 L 188.9,74.4 L 188.9,73.8 L 188.6,73.1 L 188.5,72.6 L 188.5,71.8 L 188.4,71.3 L 188.2,70.6 L 188.0,69.9 L 187.8,69.1 L 187.6,68.4 L 187.2,67.9 L 186.7,67.3 L 186.3,66.7 L 185.6,65.8 L 184.9,64.5 L 184.4,63.7 L 183.9,63.0 L 183.4,62.3 L 183.0,61.6 L 182.4,60.9 L 182.2,60.4 L 182.0,60.0 L 181.4,59.2 L 180.4,57.4 L 179.7,56.4 L 179.0,55.2 L 178.6,54.5 L 178.4,53.9 L 177.8,51.7 L 177.6,50.8 L 177.4,49.8 L 177.1,48.5 L 176.8,47.4 L 176.6,46.7 L 176.3,45.9 L 176.1,45.5 L 175.8,44.8 L 175.5,44.3 L 175.2,43.7 L 174.9,43.3 L 173.9,42.5 L 172.5,41.1 L 170.4,39.1 L 168.4,37.4 L 167.0,36.1 L 166.5,35.6 L 165.9,35.2 L 165.6,35.1 L 165.0,34.8 L 163.8,34.2 L 161.0,32.7 L 158.7,31.6 L 157.7,31.1 L 156.5,30.3 L 155.3,29.3 L 154.6,28.7 L 153.3,27.1 L 152.5,26.3 L 152.0,26.0 L 150.9,25.5 L 145.5,23.2 L 143.1,22.3 L 141.8,21.7 L 141.7,21.7 L 141.1,21.5 L 140.2,21.4 L 139.6,21.4 L 139.1,21.5 L 138.6,21.7 L 138.0,22.0 L 136.2,22.9 L 135.7,23.1 L 135.2,23.2 L 134.7,23.2 L 134.2,23.0 L 133.8,23.0 L 133.6,22.8 L 133.3,22.6 L 132.6,22.0 L 131.8,21.2 L 131.2,20.8 L 130.0,20.1 L 129.1,19.5 L 126.6,17.8 L 126.3,17.6 L 126.1,17.2 L 125.5,16.0 L 125.2,15.7 L 125.0,15.6 L 124.4,15.4 L 123.9,15.3 L 123.4,15.4 L 123.0,15.4 L 122.1,15.8 L 121.5,16.1 L 120.6,16.5 L 120.0,16.6 L 119.7,16.6 L 119.1,16.6 L 118.0,16.5 L 117.4,16.4 L 116.6,16.2 L 116.1,16.0 L 115.6,15.6 L 115.4,15.4 L 114.9,14.5 L 114.7,14.3 L 114.7,13.9 L 114.8,13.1 L 114.9,12.4 L 115.4,10.3 L 115.6,9.0 L 115.6,9.0"}, {"id": "untertor_worblaufen", "label": "Untertor → Worblaufen", "meters": 5956, "path": "M 172.7,104.7 L 171.1,104.3 L 168.1,104.1 L 165.3,104.3 L 162.6,104.5 L 155.7,105.4 L 150.7,106.0 L 146.6,105.9 L 142.3,105.2 L 131.9,101.8 L 128.0,99.8 L 125.5,98.1 L 120.8,94.7 L 117.9,92.4 L 115.3,89.0 L 113.8,85.4 L 113.8,80.7 L 122.9,55.9 L 125.5,52.1 L 128.0,50.0 L 129.3,48.6 L 138.4,35.1 L 140.2,33.2 L 143.0,31.5 L 146.5,30.5 L 150.2,29.7 L 152.5,29.1 L 153.9,28.9 L 158.0,28.9 L 160.7,29.6 L 163.3,30.1 L 167.4,31.5 L 170.1,33.0 L 172.0,33.9 L 173.7,34.4 L 175.3,34.6 L 177.2,34.7 L 179.4,34.5 L 182.2,33.9 L 184.9,33.0 L 188.0,31.6 L 192.3,29.1 L 203.3,19.3 L 204.8,17.9 L 206.1,16.3 L 206.2,14.5 L 205.2,13.1 L 202.5,12.0 L 201.1,11.7 L 197.0,11.5 L 193.6,11.4 L 190.8,11.6 L 185.6,11.0 L 179.6,10.1 L 174.6,9.7 L 169.0,9.0 L 168.8,9.0"}, {"id": "worblaufen_felsenau", "label": "Worblaufen → Felsenaubrücke", "meters": 5168, "path": "M 213.9,92.5 L 207.7,91.6 L 203.9,91.2 L 200.9,90.3 L 196.9,89.0 L 194.2,86.5 L 192.2,82.3 L 191.2,75.8 L 188.9,66.1 L 185.6,55.9 L 183.0,47.7 L 182.1,38.8 L 182.1,32.8 L 183.4,23.7 L 182.8,21.4 L 181.4,17.7 L 181.4,11.9 L 180.0,10.5 L 178.7,9.7 L 177.1,9.3 L 174.5,9.0 L 172.1,9.0 L 166.4,10.3 L 158.4,13.4 L 156.7,14.3 L 155.2,15.6 L 152.4,19.3 L 149.0,26.7 L 152.4,35.3 L 152.4,36.2 L 152.2,37.1 L 150.9,40.2 L 148.3,43.2 L 146.1,46.2 L 143.0,49.7 L 138.1,53.8 L 128.5,59.4 L 124.4,62.1 L 119.8,64.6 L 114.9,69.0 L 112.5,75.9 L 113.4,79.2 L 114.0,80.1 L 115.0,80.7 L 125.2,84.3 L 127.5,85.1 L 129.1,85.4 L 130.7,85.3 L 132.9,84.7 L 137.6,82.3 L 141.7,80.0 L 146.8,77.9 L 147.8,77.8 L 149.8,77.7 L 150.6,77.8 L 152.4,78.7 L 156.2,81.1 L 156.8,81.8 L 157.0,83.2 L 158.7,89.3 L 160.4,92.7 L 158.5,98.0 L 156.7,100.6 L 153.6,102.8 L 148.5,105.0 L 145.1,105.6 L 139.9,106.0 L 138.8,105.8 L 137.4,104.8 L 134.8,98.8 L 132.7,96.7 L 125.6,92.3 L 124.3,92.0 L 117.3,91.4 L 115.4,91.6 L 113.3,92.1 L 111.8,92.7 L 106.8,97.8 L 106.1,98.6"}, {"id": "felsenau_eymatt", "label": "Felsenaubrücke → (H)Eymatt", "meters": 5429, "path": "M 311.0,32.0 L 309.4,33.8 L 307.7,38.7 L 307.8,46.0 L 307.5,54.8 L 306.8,61.5 L 305.5,64.9 L 304.1,67.9 L 300.0,70.8 L 298.1,71.8 L 294.3,72.9 L 293.2,73.0 L 288.4,73.1 L 285.0,72.3 L 282.4,69.2 L 280.5,65.8 L 279.0,60.7 L 277.1,55.9 L 270.2,48.6 L 261.5,44.6 L 253.4,42.8 L 245.5,42.5 L 234.5,45.3 L 222.2,49.7 L 215.6,52.5 L 208.1,55.0 L 205.6,55.4 L 201.1,56.0 L 196.0,56.1 L 188.6,56.6 L 183.7,57.1 L 182.8,57.3 L 175.0,58.7 L 166.3,60.8 L 161.1,62.4 L 156.6,64.6 L 151.7,66.5 L 149.8,67.2 L 145.3,68.5 L 139.9,69.8 L 133.2,70.5 L 118.9,70.7 L 111.4,70.0 L 97.3,68.0 L 92.4,67.8 L 85.0,69.0 L 77.7,71.7 L 60.5,78.4 L 51.3,82.1 L 9.0,83.0"}];
+const routeEl = document.getElementById('route');
+const modeEl = document.getElementById('mode');
+const durationEl = document.getElementById('duration');
+const flowPill = document.getElementById('flowPill');
+const speedPill = document.getElementById('speedPill');
+const dataNote = document.getElementById('dataNote');
+const path = document.getElementById('riverPath');
+const shadow = document.getElementById('riverShadow');
 
-const routeSelect = document.getElementById('route');
-const modeSelect = document.getElementById('mode');
-const duration = document.getElementById('duration');
-const river = document.getElementById('river');
+let currentFlow = 197;
+let hasLiveFlow = false;
+const REF_FLOW = 197;
+const REF_SPEED_PACKRAFT = 3.80;
+const FLOW_EXPONENT = 0.45;
 
-function update(){
-
-    const meters = parseFloat(routeSelect.value);
-    const modifier = parseFloat(modeSelect.value);
-
-    const speed = 2.3 * modifier;
-
-    const hours = meters / 1000 / speed;
-
-    const h = Math.floor(hours);
-    const m = Math.round((hours - h) * 60);
-
-    duration.innerHTML = `${h}h ${String(m).padStart(2,'0')}`;
-
-    const routeName = routeSelect.options[routeSelect.selectedIndex].text;
-
-    if(routeName.includes("Uttigen")){
-        river.setAttribute("d","M10,70 C50,10 90,90 140,40 C180,10 230,80 290,30");
-    }
-    else if(routeName.includes("Untertor")){
-        river.setAttribute("d","M10,50 C70,30 100,70 170,50 C220,40 250,60 290,45");
-    }
-    else if(routeName.includes("Worblaufen")){
-        river.setAttribute("d","M10,60 C50,40 80,80 140,40 C180,20 220,70 290,35");
-    }
-    else{
-        river.setAttribute("d","M10,60 C60,20 90,90 140,50 C180,20 210,80 290,40");
-    }
+function fillRoutes(){
+  routeEl.innerHTML = '';
+  ROUTES.forEach((r)=>{
+    const opt=document.createElement('option');
+    opt.value=r.id; opt.textContent=r.label;
+    routeEl.appendChild(opt);
+  });
 }
-
-routeSelect.addEventListener('change', update);
-modeSelect.addEventListener('change', update);
-
+function selectedRoute(){ return ROUTES.find(r=>r.id===routeEl.value) || ROUTES[0]; }
+function minutesToText(total){
+  total=Math.max(1, Math.round(total));
+  const h=Math.floor(total/60); const m=total%60;
+  if(h<=0) return `${m} min`;
+  return `${h}h ${String(m).padStart(2,'0')}`;
+}
+function update(){
+  const r=selectedRoute();
+  const mode=parseFloat(modeEl.value);
+  const flowFactor=Math.pow((currentFlow || REF_FLOW)/REF_FLOW, FLOW_EXPONENT);
+  const speed=REF_SPEED_PACKRAFT * mode * flowFactor;
+  const km=r.meters/1000;
+  const minutes=(km/speed)*60;
+  durationEl.textContent = minutesToText(minutes);
+  speedPill.textContent = `${speed.toFixed(1)} km/h`;
+  path.setAttribute('d', r.path);
+  shadow.setAttribute('d', r.path);
+  flowPill.textContent = hasLiveFlow ? `Aare: ${Math.round(currentFlow)} m³/s` : `Aare: ${Math.round(currentFlow)} m³/s Referenz`;
+  if(currentFlow >= 300) dataNote.innerHTML = '<span class="warn">Viel Wasser.</span> Das hier ist keine Sicherheitsempfehlung, nur ein Zeitgefühl.';
+  else dataNote.textContent = 'Grobe Erfahrungsrechnung. Keine Hydrologie. Nur ein Zeitgefühl fürs Treibenlassen.';
+}
+async function loadFlow(){
+  try{
+    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.michaelzwahlen.aare-boeoetle&version=0.10';
+    const res=await fetch(url, {cache:'no-store'});
+    if(!res.ok) throw new Error('API');
+    const data=await res.json();
+    const flow = data?.aare?.flow ?? data?.flow ?? null;
+    if(typeof flow === 'number' && isFinite(flow)){
+      currentFlow = flow;
+      hasLiveFlow = true;
+    }
+  }catch(e){
+    currentFlow = REF_FLOW;
+    hasLiveFlow = false;
+  }
+  update();
+}
+fillRoutes();
+routeEl.addEventListener('change', update);
+modeEl.addEventListener('change', update);
+routeEl.addEventListener('input', update);
+modeEl.addEventListener('input', update);
 update();
-
+loadFlow();
 </script>
-
 </body>
 </html>
