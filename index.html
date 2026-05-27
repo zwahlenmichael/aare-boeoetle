@@ -1,158 +1,160 @@
-<!doctype html>
-<html lang="de-CH">
+<!DOCTYPE html>
+<html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aare Böötle</title>
+
 <style>
-  :root{
-    --bg:#1f312b;
-    --card:#f1e7bd;
-    --ink:#17251f;
-    --muted:#6f684e;
-    --river:#227b80;
-    --sun:#e2a23a;
-    --line:#ccb46b;
-    --paper:#fff4ce;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; min-height:100svh;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:#20352f; color:var(--ink);
-    display:flex; align-items:center; justify-content:center;
+body{
+    margin:0;
+    padding:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:#d8d0c4;
+    color:#1d2a2f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:90%;
+    max-width:520px;
+    text-align:center;
+}
+
+h1{
+    font-size:2.2rem;
+    line-height:1.05;
+    margin-bottom:2.5rem;
+    font-weight:800;
+    letter-spacing:-0.03em;
+}
+
+select{
+    width:100%;
     padding:18px;
-  }
-  body:before{
-    content:""; position:fixed; inset:0; z-index:-1;
-    background:
-      radial-gradient(circle at 84% 14%, rgba(226,162,58,.32), transparent 18%),
-      linear-gradient(135deg,#152722 0%,#2d4a41 62%,#1e342f 100%);
-  }
-  main{
-    width:min(470px,100%); background:var(--card);
-    border:1px solid rgba(255,255,255,.22); border-radius:30px;
-    padding:24px 22px 20px; box-shadow:0 34px 84px rgba(0,0,0,.30);
-  }
-  .kicker{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:850}
-  h1{font-size:37px;line-height:.91;margin:10px 0 4px;letter-spacing:-.065em}
-  .sub{margin:0 0 20px;color:var(--muted);font-size:15px}
-  .panel{background:rgba(255,255,255,.36);border:1px solid rgba(23,37,31,.10);border-radius:22px;padding:16px;margin:14px 0}
-  label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:850;color:var(--muted);margin-bottom:7px}
-  select{
-    width:100%;font-size:18px;font-weight:760;color:var(--ink);
-    background:var(--paper);border:1px solid rgba(23,37,31,.18);border-radius:16px;
-    padding:14px 13px;outline:none;
-  }
-  select+label{margin-top:13px}
-  .visual{height:78px;margin:18px 0 12px;position:relative;border-radius:18px;background:#e4d58e;overflow:hidden;border:1px solid rgba(23,37,31,.08)}
-  svg{width:100%;height:100%;display:block}
-  .meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);font-weight:750}
-  .big{margin:16px 0 2px;text-align:center}
-  .big .num{
-    display:inline-block; font-size:98px; line-height:.80; font-weight:950; letter-spacing:-.10em;
-    color:var(--card); -webkit-text-stroke:2.4px var(--ink);
-    text-shadow:2px 4px 0 rgba(23,37,31,.12);
-  }
-  .big .unit{font-size:27px;font-weight:900;color:var(--ink);margin-left:7px}
-  .caption{text-align:center;color:var(--muted);font-size:15px;margin:14px 0 0}
-  .phrase{margin-top:19px;border-top:1px solid var(--line);padding-top:15px;font-size:18px;font-weight:880;letter-spacing:-.02em;color:#20342f}
-  .fine{font-size:12px;line-height:1.35;color:var(--muted);margin-top:10px}
-  .pill{display:inline-flex;align-items:center;gap:7px;background:#213d37;color:#f6f0d4;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800;margin-top:12px}
-  .dot{width:7px;height:7px;border-radius:99px;background:var(--sun)}
+    margin-bottom:16px;
+    border:none;
+    border-radius:20px;
+    font-size:1rem;
+    background:#f5f1eb;
+    color:#1d2a2f;
+    appearance:none;
+}
+
+.icon{
+    width:100%;
+    height:90px;
+    margin:2rem 0;
+}
+
+.duration{
+    font-size:5rem;
+    font-weight:900;
+    line-height:0.9;
+    color:transparent;
+    -webkit-text-stroke:2px #1d2a2f;
+    margin:0;
+}
+
+.subtitle{
+    margin-top:0.8rem;
+    font-size:1rem;
+    opacity:0.8;
+}
+
+.footer{
+    margin-top:2rem;
+    font-size:0.95rem;
+    opacity:0.6;
+}
 </style>
 </head>
+
 <body>
-<main>
-  <div class="kicker">Aare Böötle</div>
-  <h1>Los laa.<br>Langsam.</h1>
-  <p class="sub">Vier Strecken. Kein GPS. Keine Exaktheit. Nur e grobi Zyt.</p>
 
-  <section class="panel">
-    <label for="route">Strecke</label>
-    <select id="route">
-      <option data-meters="22274" data-shape="M12,48 C82,16 108,62 164,34 S244,25 304,50 S385,66 438,26">Uttigen → Marzili</option>
-      <option data-meters="5956" data-shape="M20,46 C75,23 111,25 150,48 S237,70 284,36 S354,27 428,54">Untertorbrücke → Worblaufen</option>
-      <option data-meters="5168" data-shape="M20,37 C70,70 107,58 154,34 S231,8 282,43 S360,72 430,35">Worblaufen → Felsenaubrücke</option>
-      <option data-meters="5429" data-shape="M20,50 C80,55 93,17 151,31 S229,63 279,44 S361,13 430,38">Felsenaubrücke → (H)Eymatt</option>
-    </select>
+<div class="container">
 
-    <label for="mode">Art</label>
-    <select id="mode">
-      <option data-speed="1.35">Böötle · treiben lassen</option>
-      <option data-speed="1.65">SUP · ruhiger Paddelschlag</option>
-    </select>
-  </section>
+<h1>Loslassen.<br>Langsam.<br>Langsam.</h1>
 
-  <div class="visual" aria-hidden="true">
-    <svg viewBox="0 0 460 78" preserveAspectRatio="none">
-      <path id="riverShadow" d="M12,48 C82,16 108,62 164,34 S244,25 304,50 S385,66 438,26" fill="none" stroke="rgba(23,37,31,.15)" stroke-width="17" stroke-linecap="round"/>
-      <path id="riverPath" d="M12,48 C82,16 108,62 164,34 S244,25 304,50 S385,66 438,26" fill="none" stroke="#227b80" stroke-width="9" stroke-linecap="round"/>
-      <circle cx="24" cy="48" r="6" fill="#e2a23a"/>
-      <circle cx="436" cy="26" r="6" fill="#17251f"/>
-    </svg>
-  </div>
+<select id="route">
+<option value="17184">Uttigen → Marzili</option>
+<option value="6000">Untertor → Worblaufen</option>
+<option value="5210">Worblaufen → Felsenaubrücke</option>
+<option value="5429">Felsenaubrücke → (H)Eymatt</option>
+</select>
 
-  <div class="meta">
-    <span id="distanceText">–</span>
-    <span id="modeText">–</span>
-  </div>
+<select id="mode">
+<option value="1">Böötle</option>
+<option value="0.82">SUP</option>
+</select>
 
-  <section class="big" aria-live="polite">
-    <span class="num" id="durationMain">–</span><span class="unit">h</span>
-    <p class="caption" id="durationWords">Zyt wird berechnet.</p>
-  </section>
+<svg class="icon" viewBox="0 0 300 100">
+<path id="river"
+d="M10,60 C60,20 90,90 140,50 C180,20 210,80 290,40"
+fill="none"
+stroke="#1d2a2f"
+stroke-width="6"
+stroke-linecap="round"/>
+</svg>
 
-  <div class="phrase">Zyt zum los la.</div>
-  <div class="pill"><span class="dot"></span> Berner Langsamkeit: Feature, nid Bug.</div>
-  <p class="fine">Schätzung für ruhiges Treiben. Kein Sicherheits- oder Pegelentscheid. Die Aare entscheidet immer mit.</p>
-</main>
+<div class="duration" id="duration">2h 05</div>
+
+<div class="subtitle">
+Zyt zum los la.
+</div>
+
+<div class="footer">
+Berner Langsamkeit
+</div>
+
+</div>
 
 <script>
-(function(){
-  const route = document.getElementById('route');
-  const mode = document.getElementById('mode');
-  const durationMain = document.getElementById('durationMain');
-  const durationWords = document.getElementById('durationWords');
-  const distanceText = document.getElementById('distanceText');
-  const modeText = document.getElementById('modeText');
-  const riverPath = document.getElementById('riverPath');
-  const riverShadow = document.getElementById('riverShadow');
 
-  function words(h, min){
-    const hw = ['null','eine','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn'];
-    let t = 'ungefähr ' + (hw[h] || String(h)) + ' Stunde' + (h === 1 ? '' : 'n');
-    if(min > 0) t += ' und ' + min + ' Minuten';
-    return t;
-  }
+const routeSelect = document.getElementById('route');
+const modeSelect = document.getElementById('mode');
+const duration = document.getElementById('duration');
+const river = document.getElementById('river');
 
-  function update(){
-    const selectedRoute = route.options[route.selectedIndex];
-    const selectedMode = mode.options[mode.selectedIndex];
-    const meters = Number(selectedRoute.dataset.meters);
-    const speed = Number(selectedMode.dataset.speed);
-    const minutes = Math.max(5, Math.round((meters / speed / 60) / 5) * 5);
-    const h = Math.floor(minutes / 60);
-    const min = minutes % 60;
+function update(){
 
-    durationMain.textContent = h + ':' + String(min).padStart(2,'0');
-    durationWords.textContent = words(h, min);
-    distanceText.textContent = (meters / 1000).toFixed(1) + ' km';
-    modeText.textContent = selectedMode.textContent.split('·')[0].trim();
+    const meters = parseFloat(routeSelect.value);
+    const modifier = parseFloat(modeSelect.value);
 
-    const shape = selectedRoute.dataset.shape;
-    riverPath.setAttribute('d', shape);
-    riverShadow.setAttribute('d', shape);
-  }
+    const speed = 2.3 * modifier;
 
-  route.addEventListener('change', update);
-  route.addEventListener('input', update);
-  mode.addEventListener('change', update);
-  mode.addEventListener('input', update);
-  window.addEventListener('pageshow', update);
-  document.addEventListener('DOMContentLoaded', update);
-  update();
-})();
+    const hours = meters / 1000 / speed;
+
+    const h = Math.floor(hours);
+    const m = Math.round((hours - h) * 60);
+
+    duration.innerHTML = `${h}h ${String(m).padStart(2,'0')}`;
+
+    const routeName = routeSelect.options[routeSelect.selectedIndex].text;
+
+    if(routeName.includes("Uttigen")){
+        river.setAttribute("d","M10,70 C50,10 90,90 140,40 C180,10 230,80 290,30");
+    }
+    else if(routeName.includes("Untertor")){
+        river.setAttribute("d","M10,50 C70,30 100,70 170,50 C220,40 250,60 290,45");
+    }
+    else if(routeName.includes("Worblaufen")){
+        river.setAttribute("d","M10,60 C50,40 80,80 140,40 C180,20 220,70 290,35");
+    }
+    else{
+        river.setAttribute("d","M10,60 C60,20 90,90 140,50 C180,20 210,80 290,40");
+    }
+}
+
+routeSelect.addEventListener('change', update);
+modeSelect.addEventListener('change', update);
+
+update();
+
 </script>
+
 </body>
 </html>
