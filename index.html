@@ -3,15 +3,34 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Aare Böötle</title>
+<title>AareZyt – Aare Böötle</title>
+<link rel="canonical" href="https://aarezyt.ch/" />
 <link rel="icon" type="image/svg+xml" href="icon.svg" />
 <link rel="alternate icon" type="image/png" href="apple-touch-icon.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Aare Böötle" />
+<meta name="apple-mobile-web-app-title" content="AareZyt" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="theme-color" content="#c9b37e" />
 <meta name="description" content="Wie lange dauert das Böötle heute? Ein ruhiges Zeitgefühl für die Aare zwischen Thun und Bern." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="AareZyt" />
+<meta property="og:title" content="Los la. Langsam. Langsam." />
+<meta property="og:description" content="Wie lange dauert das Böötle heute? Ein ruhiges Zeitgefühl für die Aare zwischen Thun und Bern." />
+<meta property="og:url" content="https://aarezyt.ch/" />
+<meta property="og:locale" content="de_CH" />
+<meta property="og:image" content="https://aarezyt.ch/og-image.png" />
+<meta property="og:image:secure_url" content="https://aarezyt.ch/og-image.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="AareZyt — Mäander der Aare zwischen Worblaufen und Felsenaubrücke." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Los la. Langsam. Langsam." />
+<meta name="twitter:description" content="Wie lange dauert das Böötle heute? Ein ruhiges Zeitgefühl für die Aare zwischen Thun und Bern." />
+<meta name="twitter:image" content="https://aarezyt.ch/og-image.png" />
+<meta name="twitter:image:alt" content="AareZyt — Mäander der Aare zwischen Worblaufen und Felsenaubrücke." />
 <style>
 :root {
   --bg:#c9b37e;
@@ -149,7 +168,7 @@ function update(){
 }
 async function loadFlow(){
   try{
-    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.michaelzwahlen.aare-boeoetle&version=0.14';
+    const url='https://aareguru.existenz.ch/v2018/current?city=bern&app=ch.aarezyt.web&version=0.15';
     const res=await fetch(url, {cache:'no-store'});
     if(!res.ok) throw new Error('API');
     const data=await res.json();
